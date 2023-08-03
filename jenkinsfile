@@ -6,11 +6,11 @@ pipeline{
         PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
     }
     stages{
-        stage("BUILD"){
+        stage("build"){
             steps{
-                echo "BUILD start ---------"
+                echo "----build start ---------"
                 sh 'mvn clean deploy'
-                echo "BUILD end------"
+                echo "----build end------"
             }
             
         }
