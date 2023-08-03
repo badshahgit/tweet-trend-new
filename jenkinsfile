@@ -1,0 +1,16 @@
+pipeline{
+    agent{
+        label "maven"
+    }
+    stages{
+        stage("clone code"){
+            steps{
+                echo "cloning start --------"
+                git 'https://github.com/badshahgit/tweet-trend-new.git'
+                echo "cloning end------"
+            }
+            
+        }
+    }
+}
+  
