@@ -2,12 +2,15 @@ pipeline{
     agent{
         label "maven"
     }
+    environment {
+        PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
+    }
     stages{
-        stage("clone code"){
+        stage("BUILD"){
             steps{
-                echo "cloning start ---------"
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/badshahgit/tweet-trend-new.git']])
-                echo "cloning end------"
+                echo "BUILD start ---------"
+                sh 'mvn clean deploy'
+                echo "BUILD end------"
             }
             
         }
