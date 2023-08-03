@@ -10,10 +10,17 @@ pipeline{
             steps{
                 echo "----build start ---------"
                 sh 'mvn clean deploy'
-                echo "----build end------"
+                echo "build end------"
             }
             
         }
+        stage("test"){
+            steps{
+                echo "----------- unit test started ----------"
+                sh 'mvn surefire-report:report'
+                echo "----------- unit test Complted ----------"
+            }
     }
+        
 }
-  
+}
