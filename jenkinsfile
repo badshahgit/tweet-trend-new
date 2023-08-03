@@ -10,7 +10,7 @@ pipeline{
             steps{
                 echo "----build start ---------"
                 sh 'mvn clean deploy'
-                echo "----build end------"
+                echo "----build end-------"
             }
             
         }
