@@ -42,10 +42,11 @@ pipeline{
             if (qg.status != 'OK') {
                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
-  }
+         }
+    }   
 }
+  
     }
-  }
         stage("Jar Publish") {
             steps {
                 script {
@@ -68,9 +69,10 @@ pipeline{
                      server.publishBuildInfo(buildInfo)
                      echo '<--------------- Jar Publish Ended --------------->'  
             
+                     }
+                 }   
             }
-        }   
-    }
+
         stage(" Docker Build ") {
             steps {
                 script {
@@ -79,20 +81,17 @@ pipeline{
                 echo '<--------------- Docker Build Ends --------------->'
                 }
             }
-            }
-         stage (" Docker Publish "){
+        }
+        stage (" Docker Publish "){
             steps {
                 script {
-                echo '<--------------- Docker Publish Started --------------->'  
-                    docker.withRegistry(registry, 'artfiact-cred'){
+                    echo '<--------------- Docker Publish Started --------------->'  
+                    docker.withRegistry(registry, 'artifact-cred'){
                         app.push()
                     }    
-                echo '<--------------- Docker Publish Ended --------------->'  
+                    echo '<--------------- Docker Publish Ended --------------->'  
                 }
             }
-
-
-
-}
-}
+        }
+    }
 }
